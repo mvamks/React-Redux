@@ -1,0 +1,40 @@
+
+.form {
+   
+   
+    input {
+        
+        &:focus {
+            outline: 1px solid #f57507;
+        }
+    }
+    select {
+        
+        cursor: pointer;
+        &:focus {
+            outline: 1px solid #f57507;
+        }
+    }
+    textarea {
+        
+        &:focus {
+            outline: 1px solid #f57507;
+        }
+    }
+    
+   /*  button {
+        display: block;
+        width: 180px;
+        padding: 15px;
+        margin-top: 25px;
+        font-size: 18px;
+        color: #fff;
+        border: 0;
+        border-radius: 10px;
+        background-image: linear-gradient(257deg, #f59c07, #f57507);
+    } */
+    .error {
+        color: #e53e3e;
+        margin-top: 8px;
+    }
+}

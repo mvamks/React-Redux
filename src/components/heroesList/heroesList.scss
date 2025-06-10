@@ -1,0 +1,23 @@
+.hero-enter {
+  opacity: 0;
+  transform: translateY(50px) scale(0.9);
+  filter: blur(4px);
+}
+.hero-enter-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+  transition: all 700ms ease-out;
+}
+
+.hero-exit {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+.hero-exit-active {
+  opacity: 0;
+  transform: translateY(-50px) scale(0.9);
+  filter: blur(4px);
+  transition: all 700ms ease-in;
+}

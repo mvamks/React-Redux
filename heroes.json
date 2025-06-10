@@ -1,0 +1,91 @@
+{
+  "heroes": [
+    {
+      "id": "8bb2f230-2ea6-4dcf-9262-632e2a2f46f0",
+      "name": "Первый герой",
+      "description": "Первый герой в рейтинге!",
+      "element": "fire"
+    },
+    {
+      "id": "c255eaad-4975-4931-992f-383308a04253",
+      "name": "Неизвестный герой",
+      "description": "Скрывающийся в тени",
+      "element": "wind"
+    },
+    {
+      "id": "73b7deec-cf02-40b8-9acc-22a3b350bab3",
+      "name": "Морской герой",
+      "description": "Как аквамен, но не из DC",
+      "element": "water"
+    },
+    {
+      "id": "9d7bf1ae-815c-470f-95bc-fb871f3f11bc",
+      "name": "fdfd",
+      "description": "fggggggggggggggggggg",
+      "element": "earth"
+    },
+    {
+      "id": "510eafe9-24c2-4611-99c4-f5840eec5535",
+      "name": "xcxcxz",
+      "description": "отправить почту",
+      "element": "earth"
+    },
+    {
+      "id": "abd54e99-15b5-4dc4-8fc5-07f8b3b3a0ad",
+      "name": "xcxcxz",
+      "description": "отправить почту",
+      "element": "earth"
+    },
+    {
+      "id": "9698a1e8-8e92-4ed7-a822-a5c12e38c23c",
+      "name": "falcon",
+      "description": "отправить почту",
+      "element": "water"
+    },
+    {
+      "id": "9b1f71d1-0a47-4c0b-847c-96341c7c7dff",
+      "name": "fdfd",
+      "description": "отправить почту",
+      "element": "fire"
+    },
+    {
+      "id": "f54e17e9-3eb9-4a4a-a1b2-d2fe998c578b",
+      "name": "dff",
+      "description": "hghghghghgjhghghg",
+      "element": "wind"
+    },
+    {
+      "id": "99e7b0e8-becc-488a-a60c-70f820d1ff33",
+      "name": "4545454545",
+      "description": "отправить почту",
+      "element": "fire"
+    }
+  ],
+  "filters": [
+    {
+      "name": "all",
+      "label": "Все",
+      "className": "btn-outline-dark"
+    },
+    {
+      "name": "fire",
+      "label": "Огонь",
+      "className": "btn-danger"
+    },
+    {
+      "name": "water",
+      "label": "Вода",
+      "className": "btn-primary"
+    },
+    {
+      "name": "wind",
+      "label": "Ветер",
+      "className": "btn-success"
+    },
+    {
+      "name": "earth",
+      "label": "Земля",
+      "className": "btn-secondary"
+    }
+  ]
+}
