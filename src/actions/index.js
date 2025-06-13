@@ -1,4 +1,27 @@
-export const heroesFetching = () => {
+import { heroesFetching, heroesFetched, heroesFetchingError } from "../components/heroesList/heroesSlice";
+import { filtersFetching, filtersFetched, filtersFetchingError  } from '../components/heroesFilters/heroesFiltersSlice';
+
+export const  fetchHeroes = (request) => (dispatch) => {
+    dispatch(heroesFetching());
+        request("http://localhost:3001/heroes")
+            .then(data => {
+                console.log('Данные с сервера:', data); // <- добавь это
+                dispatch(heroesFetched(data))
+            })
+            .catch(() => dispatch(heroesFetchingError()))
+}
+
+export const fetchFilters = (request) => (dispatch) => {
+    dispatch(filtersFetching());
+        request("http://localhost:3001/filters")
+            .then(data => {
+                console.log("Фильтры с сервера:", data); 
+                dispatch(filtersFetched(data));
+            })
+            .catch(() => dispatch(filtersFetchingError()));
+}
+
+/* export const heroesFetching = () => {
     return {
         type: 'HEROES_FETCHING'
     }
@@ -26,8 +49,8 @@ export const heroCreated  = (hero) => ({
     type: 'HERO_CREATED',
     payload: hero
 });
-
-export const filtersFetching = () => ({
+ */
+/* export const filtersFetching = () => ({
     type: 'FILTERS_FETCHING'
 });
 
@@ -43,4 +66,4 @@ export const filtersFetchingError = () => ({
 export const activeFilterChanged = (filter) => ({
     type: 'ACTIVE_FILTER_CHANGED',
     payload: filter
-})
+}) */

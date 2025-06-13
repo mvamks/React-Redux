@@ -2,7 +2,9 @@ import {useHttp} from '../../hooks/http.hook';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 //import { useRef } from 'react';
-import { heroesFetching, heroesFetched, heroesFetchingError } from '../../actions';
+import { createSelector } from 'reselect';
+import { fetchHeroes } from '../../actions';
+
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './heroesList.scss';
@@ -14,27 +16,38 @@ import {FadeLoader} from 'react-spinners';
 // При клике на "крестик" идет удаление персонажа из общего состояния
 // Усложненная задача:
 // Удаление идет и с json файла при помощи метода DELETE
+const selectHeroes = state => state.heroes.heroes;
+const selectActiveFilter  = state => state.filters.activeFilter;
+
+const selectFiltredHeroes = createSelector(
+    [selectHeroes, selectActiveFilter],
+    (heroes, activeFilter) => {
+        if (activeFilter === 'all') {
+            return heroes;
+        }
+        return heroes.filter(hero => hero.element === activeFilter);
+    }       
+);
 
 const HeroesList = () => {
-    const heroes = useSelector(state => state.heroes);
-    const  heroesLoadingStatus = useSelector(state => state.heroesLoadingStatus);
-    const activeFilter  = useSelector(state => state.activeFilter);
+    const heroesLoadingStatus = useSelector(state => state.heroes.heroesLoadingStatus);
+    const filtredHeroes = useSelector(selectFiltredHeroes);
+    console.log('Герои из стора:', filtredHeroes);
+    
     const dispatch = useDispatch();
     const {request} = useHttp();
 
     useEffect(() => {
-        dispatch(heroesFetching());
-        request("http://localhost:3001/heroes")
-            .then(data => dispatch(heroesFetched(data)))
-            .catch(() => dispatch(heroesFetchingError()))
+        dispatch(fetchHeroes(request));
 
         // eslint-disable-next-line
-    }, []);
+    }, [request]);
 
      // ФИЛЬТРАЦИЯ по активному фильтру
-     const filtredHeroes = activeFilter === 'all'
+     
+     /* const filtredHeroes = activeFilter === 'all'
         ? heroes
-        : heroes.filter(hero => hero.element === activeFilter); // поле element в JSON
+        : heroes.filter(hero => hero.element === activeFilter); */ // поле element в JSON
 
 
     if (heroesLoadingStatus === "loading") {

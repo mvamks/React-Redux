@@ -25,12 +25,6 @@
       "element": "earth"
     },
     {
-      "id": "510eafe9-24c2-4611-99c4-f5840eec5535",
-      "name": "xcxcxz",
-      "description": "отправить почту",
-      "element": "earth"
-    },
-    {
       "id": "abd54e99-15b5-4dc4-8fc5-07f8b3b3a0ad",
       "name": "xcxcxz",
       "description": "отправить почту",
@@ -43,21 +37,21 @@
       "element": "water"
     },
     {
-      "id": "9b1f71d1-0a47-4c0b-847c-96341c7c7dff",
-      "name": "fdfd",
-      "description": "отправить почту",
+      "id": "e74eebdb-d6a1-4e01-938d-e96260cb80cf",
+      "name": "sds",
+      "description": "requiredkjkjjkjkj",
       "element": "fire"
     },
     {
-      "id": "f54e17e9-3eb9-4a4a-a1b2-d2fe998c578b",
-      "name": "dff",
-      "description": "hghghghghgjhghghg",
-      "element": "wind"
+      "id": "c81de0b6-2bff-4980-be31-4e957af067d1",
+      "name": "falcon444",
+      "description": "required4444",
+      "element": "fire"
     },
     {
-      "id": "99e7b0e8-becc-488a-a60c-70f820d1ff33",
-      "name": "4545454545",
-      "description": "отправить почту",
+      "id": "a9b05eca-4c61-479e-a0f0-6c5472e8caf6",
+      "name": "ooooooo",
+      "description": "validate4444",
       "element": "fire"
     }
   ],

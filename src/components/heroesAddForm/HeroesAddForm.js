@@ -3,7 +3,7 @@
  import './heroesAddForm.scss';
  import { useDispatch, useSelector } from 'react-redux';
  import { useHttp } from '../../hooks/http.hook';
- import {heroCreated} from '../../actions';
+ import {heroCreated} from '../heroesList/heroesSlice';
  const { v4: uuidv4 } = require('uuid');
  
 
@@ -20,8 +20,8 @@
 
 const HeroesAddForm = () => {
     const dispatch = useDispatch();
-    const filters = useSelector(state => state.filters); // получаем фильтры
-    const heroes = useSelector(state => state.heroes);
+    const filters = useSelector(state => state.filters.filters); // получаем фильтры
+    const heroes = useSelector(state => state.heroes.heroes);
     const { request } = useHttp();
 
     const validationSchema  = Yup.object({

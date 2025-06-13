@@ -1,15 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHttp } from  '../../hooks/http.hook';
 import { useEffect, useCallback } from "react";
-import {
-    filtersFetched,
-    filtersFetching,
-    filtersFetchingError,
-    activeFilterChanged
-} from "../../actions";
+import { activeFilterChanged } from "./heroesFiltersSlice";
+import { fetchFilters } from "../../actions";
 
 import './heroesFilters.scss';
 import classNames from "classnames";
+
+
 
 
 // Задача для этого компонента:
@@ -31,19 +29,13 @@ import classNames from "classnames";
 const HeroesFilters = () => {
     const dispatch = useDispatch();
     const {request} = useHttp();
-    const filters = useSelector(state => state.filters ?? []);
-    const filtersLoadingStatus = useSelector(state => state.filtersLoadingStatus);
-    const activeFilter = useSelector(state => state.activeFilter);
+    const filters = useSelector(state => state.filters.filters ?? []);
+    const filtersLoadingStatus = useSelector(state => state.filters.filtersLoadingStatus);
+    const activeFilter = useSelector(state => state.filters.activeFilter);
 
     useEffect(() => {
-        dispatch(filtersFetching());
-        request("http://localhost:3001/filters")
-            .then(data => {
-                console.log("Фильтры с сервера:", data); 
-                dispatch(filtersFetched(data));
-            })
-            .catch(() => dispatch(filtersFetchingError()));
-              // eslint-disable-next-line
+        dispatch(fetchFilters(request));
+        // eslint-disable-next-line
     }, []); 
 
     // Обработчик изменения фильтра
