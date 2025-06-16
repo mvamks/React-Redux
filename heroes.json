@@ -53,6 +53,12 @@
       "name": "ooooooo",
       "description": "validate4444",
       "element": "fire"
+    },
+    {
+      "id": "9f260f71-997e-4e66-b9ca-12c0f8c585e0",
+      "name": "falcon2222",
+      "description": "отправить почту",
+      "element": "wind"
     }
   ],
   "filters": [

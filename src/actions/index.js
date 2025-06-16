@@ -1,7 +1,7 @@
-import { heroesFetching, heroesFetched, heroesFetchingError } from "../components/heroesList/heroesSlice";
-import { filtersFetching, filtersFetched, filtersFetchingError  } from '../components/heroesFilters/heroesFiltersSlice';
+//import { heroesFetching, heroesFetched, heroesFetchingError } from "../components/heroesList/heroesSlice";
+//import { filtersFetching, filtersFetched, filtersFetchingError  } from '../components/heroesFilters/heroesFiltersSlice';
 
-export const  fetchHeroes = (request) => (dispatch) => {
+/* export const  fetchHeroes = (request) => (dispatch) => {
     dispatch(heroesFetching());
         request("http://localhost:3001/heroes")
             .then(data => {
@@ -9,9 +9,9 @@ export const  fetchHeroes = (request) => (dispatch) => {
                 dispatch(heroesFetched(data))
             })
             .catch(() => dispatch(heroesFetchingError()))
-}
+} */
 
-export const fetchFilters = (request) => (dispatch) => {
+/* export const fetchFilters = (request) => (dispatch) => {
     dispatch(filtersFetching());
         request("http://localhost:3001/filters")
             .then(data => {
@@ -19,7 +19,7 @@ export const fetchFilters = (request) => (dispatch) => {
                 dispatch(filtersFetched(data));
             })
             .catch(() => dispatch(filtersFetchingError()));
-}
+} */
 
 /* export const heroesFetching = () => {
     return {
