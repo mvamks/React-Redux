@@ -2,6 +2,7 @@
 	"name": "hero_admin_panel",
 	"version": "0.1.0",
 	"private": true,
+	"homepage": "https://mvamks.github.io/React-Redux",
 	"dependencies": {
 		"@reduxjs/toolkit": "^2.8.2",
 		"@testing-library/jest-dom": "^6.4.5",

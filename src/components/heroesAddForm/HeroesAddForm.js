@@ -3,7 +3,8 @@
  import './heroesAddForm.scss';
  import { useDispatch, useSelector } from 'react-redux';
  import { useHttp } from '../../hooks/http.hook';
- import {heroCreated} from '../heroesList/heroesSlice';
+ import {heroCreated } from '../heroesList/heroesSlice';
+ import { selectAllFilters } from '../heroesFilters/heroesFiltersSlice';
  const { v4: uuidv4 } = require('uuid');
  
 
@@ -20,25 +21,26 @@
 
 const HeroesAddForm = () => {
     const dispatch = useDispatch();
-    const filters = useSelector(state => state.filters.filters); // получаем фильтры
+    const filters = useSelector(selectAllFilters); // получаем фильтры
     const heroes = useSelector(state => state.heroes.heroes);
     const { request } = useHttp();
 
-    const validationSchema  = Yup.object({
-        name: Yup.string()
-            .min(2, 'Минимум 2 символа для заполнения!')
-            .required("Введите имя!")
-            .test('unique-name', 'Герой с таким именем уже существует!', function(value) {
-                if(!value) return true; // если поле пустое, пусть валидируется другим правилом
-                const normalized = value.trim().toLowerCase();
-                const nameExists = heroes.some(hero => hero.name.trim().toLowerCase() === normalized);
-                return !nameExists;
-            }),
-        text: Yup.string()
-            .min(10, 'Не менее 10 символов')
-            .required("Введите описание!"),
-        element: Yup.string()
-            .required("Выберете элемент!")
+    const getValidationSchema  = (heroes) => 
+        Yup.object({
+            name: Yup.string()
+                .min(2, 'Минимум 2 символа для заполнения!')
+                .required("Введите имя!")
+                .test('unique-name', 'Герой с таким именем уже существует!', function(value) {
+                    if(!value) return true; // если поле пустое, пусть валидируется другим правилом
+                    const normalized = value.trim().toLowerCase();
+                    const nameExists = heroes?.some(hero => hero.name.trim().toLowerCase() === normalized);
+                    return !nameExists;
+                }),
+            text: Yup.string()
+                .min(10, 'Не менее 10 символов')
+                .required("Введите описание!"),
+            element: Yup.string()
+                .required("Выберете элемент!")
     });
 
     const handleSubmit = (values, { resetForm }) => {
@@ -76,7 +78,7 @@ const HeroesAddForm = () => {
                 text: '',
                 element: '',  
             }}
-            validationSchema = {validationSchema}   
+            validationSchema = {getValidationSchema(heroes)}   
             onSubmit = { handleSubmit }
             
             >

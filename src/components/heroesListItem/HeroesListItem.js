@@ -1,3 +1,4 @@
+import React from 'react';
 import { useDispatch } from "react-redux";
 //import { deleteItem } from "../../actions";
 import { useHttp } from "../../hooks/http.hook";
@@ -5,7 +6,7 @@ import { useState } from "react";
 import { deleteItem } from '../heroesList/heroesSlice';
 
 
-const HeroesListItem = ({ id, name, description, element }) => {
+const HeroesListItem = React.forwardRef(({ id, name, description, element }, ref) => {
 	const dispatch = useDispatch();
 	const { request } = useHttp();
 	const [deleteForever, setDeleteForever] = useState(false); // ✅ состояние чекбокса
@@ -44,10 +45,11 @@ const HeroesListItem = ({ id, name, description, element }) => {
 			dispatch(deleteItem(id));
 		}		
 	}
-
+	
 	return (
 		<li
 			className={`card flex-row mb-4 shadow-lg text-white ${elementClassName}`}
+			ref={ref}
 		>
 			<img
 				src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/1200px-Unknown_person.jpg"
@@ -83,6 +85,6 @@ const HeroesListItem = ({ id, name, description, element }) => {
 			</span>
 		</li>
 	);
-};
+});
 
 export default HeroesListItem;

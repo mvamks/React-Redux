@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 //import { useHttp } from  '../../hooks/http.hook';
 import { useEffect, useCallback } from "react";
-import { activeFilterChanged } from "./heroesFiltersSlice";
+import { activeFilterChanged, selectAllFilters } from "./heroesFiltersSlice";
 import { fetchFilters } from "./heroesFiltersSlice";
 
 import './heroesFilters.scss';
@@ -29,7 +29,7 @@ import classNames from "classnames";
 const HeroesFilters = () => {
     const dispatch = useDispatch();
     //const {request} = useHttp();
-    const filters = useSelector(state => state.filters.filters ?? []);
+    const filters = useSelector(selectAllFilters);
     const filtersLoadingStatus = useSelector(state => state.filters.filtersLoadingStatus);
     const activeFilter = useSelector(state => state.filters.activeFilter);
 
@@ -77,7 +77,6 @@ const HeroesFilters = () => {
 
     //const capitize = (text) => text.charAt(0).toUpperCase() + text.slice(1);
      const elements = renderButtons(filters);
-     console.log('elements:', elements );
     return (
         <div className="card shadow-lg mt-4">
             <div className="card-body">

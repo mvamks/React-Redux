@@ -1,12 +1,12 @@
 //import {useHttp} from '../../hooks/http.hook';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-//import { useRef } from 'react';
 import { createSelector } from '@reduxjs/toolkit';
-import { fetchHeroes } from './heroesSlice';
+import { fetchHeroes, selectAll } from './heroesSlice';
 
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { useRef } from 'react';
 import './heroesList.scss';
 import {FadeLoader} from 'react-spinners';
 //import Spinner from '../spinner/Spinner';
@@ -16,11 +16,11 @@ import {FadeLoader} from 'react-spinners';
 // При клике на "крестик" идет удаление персонажа из общего состояния
 // Усложненная задача:
 // Удаление идет и с json файла при помощи метода DELETE
-const selectHeroes = state => state.heroes.heroes;
+//const selectHeroes = state => state.heroes.heroes;
 const selectActiveFilter  = state => state.filters.activeFilter;
 
 const selectFiltredHeroes = createSelector(
-    [selectHeroes, selectActiveFilter],
+    [selectAll, selectActiveFilter],
     (heroes, activeFilter) => {
         if (activeFilter === 'all') {
             return heroes;
@@ -32,14 +32,11 @@ const selectFiltredHeroes = createSelector(
 const HeroesList = () => {
     const heroesLoadingStatus = useSelector(state => state.heroes.heroesLoadingStatus);
     const filtredHeroes = useSelector(selectFiltredHeroes);
-    console.log('Герои из стора:', filtredHeroes);
-    
     const dispatch = useDispatch();
     //const {request} = useHttp();
 
     useEffect(() => {
         dispatch(fetchHeroes());
-
         // eslint-disable-next-line
     }, []);
 
@@ -67,15 +64,19 @@ const HeroesList = () => {
 
         return (
             <TransitionGroup component='ul' appear>
-                {arr.map(({id, ...props}) => (
-                    <CSSTransition key={id} 
-                                   timeout={700} 
-                                   classNames='hero' 
-                                   onEnter={() => console.log('Анимация начала появление')}
-                                   onExited={() => console.log('Анимация завершила исчезновение')} >
-                        <HeroesListItem key={id} id={id} {...props}/>
-                    </CSSTransition>
-               ))}
+                {arr.map(({id, ...props}) => {
+                    const nodeRef = React.createRef();
+                    return (
+                        <CSSTransition 
+                            key={id}
+                            timeout={700} 
+                            classNames='hero' 
+                            nodeRef={nodeRef}
+                            >
+                            <HeroesListItem ref={nodeRef} id={id} {...props} />  
+                        </CSSTransition>
+                    )       
+               })}
             </TransitionGroup>  
         );  
     }
@@ -83,5 +84,6 @@ const HeroesList = () => {
     const elements = renderHeroesList(filtredHeroes); // Подаём ОТФИЛЬТРОВАННЫХ героев
     return elements;
 }
+
 
 export default HeroesList;
