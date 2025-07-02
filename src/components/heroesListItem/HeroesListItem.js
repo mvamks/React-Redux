@@ -34,7 +34,7 @@ const HeroesListItem = React.forwardRef(({ id, name, description, element }, ref
 	const onDelete = () => {
 		if(deleteForever) {
 			//Удаление из сервера
-			request(`http://localhost:3001/heroes/${id}`, 'DELETE')
+			request(`/heroes/${id}`, 'DELETE')
 				.then(() => {
 					//Удаление из Redux
 					dispatch(deleteItem(id));

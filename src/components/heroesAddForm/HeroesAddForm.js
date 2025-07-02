@@ -21,7 +21,7 @@
 
 const HeroesAddForm = () => {
     const dispatch = useDispatch();
-    const filters = useSelector(selectAllFilters); // получаем фильтры
+    const filters = useSelector(selectAllFilters)  || []; // получаем фильтры
     const heroes = useSelector(state => state.heroes.heroes);
     const { request } = useHttp();
 
@@ -55,7 +55,7 @@ const HeroesAddForm = () => {
         dispatch(heroCreated(newHero));
 
           // Отправляем на сервер
-        request("http://localhost:3001/heroes", "POST", JSON.stringify(newHero))
+        request("/heroes", "POST", JSON.stringify(newHero))
             .then(() => console.log(`Герой ${values.name} добавлен на сервер !`))
             .catch(err => console.log(err));
 
@@ -131,3 +131,5 @@ const HeroesAddForm = () => {
 }
 
 export default HeroesAddForm;
+
+//https://mvamks.github.io/React-Redux
